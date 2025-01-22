@@ -12,7 +12,10 @@ async function main() {
                 { name:"Photography"},
                 { name:"Engineering"},
                 { name:"Accounting"},
-                { name:"Filming"},
+                { name:"Web Development"},
+                { name:"Language"},
+                { name:"Economics"},
+                { name:"Microsoft"},
             ]
         });
         console.log("Success");

@@ -23,12 +23,14 @@ const CourseIdPage = async ({
     const { userId } = await auth();
 
     if(!userId) {
-        return redirect("/");
+        return redirect("/home");
     }
+
+    const resolvedParams = await params;
 
     const course = await db.course.findUnique({
         where: {
-            id: params.courseId,
+            id: resolvedParams.courseId,
             userId
         },
         include: {
@@ -54,7 +56,7 @@ const CourseIdPage = async ({
     console.log(categories);
 
     if(!course) {
-        return redirect("/");
+        return redirect("/home");
     }
 
     const requiredFields = [
@@ -91,7 +93,7 @@ const CourseIdPage = async ({
                     </div>
                     <Actions 
                         disabled={!isComplete}
-                        courseId={params.courseId}
+                        courseId={resolvedParams.courseId}
                         isPublished={course.isPublished}
                     />
                 </div>

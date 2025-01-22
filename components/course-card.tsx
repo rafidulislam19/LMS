@@ -4,6 +4,8 @@ import { IconBadge } from "@/components/icon-badge";
 import { BookOpen } from "lucide-react";
 import { formatPrice } from "@/lib/format";
 import { CourseProgress } from "@/components/course-progress";
+import { number } from "zod";
+import { auth } from "@clerk/nextjs/server";
 
 interface CourseCardProps {
     id: string;
@@ -14,7 +16,7 @@ interface CourseCardProps {
     progress: number | null;
     category: string;
 }
-export const CourseCard = ({
+export const CourseCard = async ({
     id,
     title,
     imageUrl,
@@ -23,6 +25,7 @@ export const CourseCard = ({
     progress,
     category
 }: CourseCardProps) => {
+    
     return ( 
         <Link href={`/courses/${id}`}>
             <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">

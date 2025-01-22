@@ -8,11 +8,11 @@ const guestRoutes = [
     {
         icon: Layout,
         label: "Dashboard",
-        href: "/"
+        href: "/home"
     },
     {
         icon: Compass,
-        label: "Browse",
+        label: "My Courses",
         href: "/search"
     },
 ];

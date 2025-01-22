@@ -1,6 +1,6 @@
 "use client"
 
-import { Chapter } from "@prisma/client"
+import { Chapter, Quiz } from "@prisma/client"
 import { useEffect, useState } from "react";
 import {
     DragDropContext,
@@ -16,12 +16,14 @@ import { Badge } from "@/components/ui/badge";
 interface ChaptersListProps {
     items: Chapter[];
     onReorder: (updateData: { id: string; position: number}[]) => void;
-    onEdit: (id: string) => void;
+    onEditChapter: (id: string) => void;
+    onEditQuiz: (id: string) => void;
 }
 export const ChaptersList = ({
     items,
     onReorder,
-    onEdit
+    onEditChapter,
+    onEditQuiz,
 } : ChaptersListProps) => {
     const [isMounted, setIsMounted] = useState(false);
     const [chapters, setChapters] = useState(items);
@@ -101,7 +103,7 @@ export const ChaptersList = ({
                                                 {chapter.isPublished ? "Published" : "Draft"}
                                             </Badge>
                                             <Pencil 
-                                            onClick={() => onEdit(chapter.id)}
+                                            onClick={() => onEditChapter(chapter.id)}
                                             className="w-4 h-4 cursor-pointer hover:opacity-75 transition"
                                             />
                                         </div>
@@ -116,3 +118,54 @@ export const ChaptersList = ({
         </DragDropContext>
     )
 }
+
+// "use client";
+
+// import { Chapter, Quiz } from "@prisma/client";
+// import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
+// import { cn } from "@/lib/utils";
+// import { Grip, Pencil } from "lucide-react";
+
+// interface ChaptersListProps {
+//     items: (Chapter | Quiz)[];
+//     onReorder: (updateData: { id: string; position: number }[]) => void;
+//     onEditChapter: (id: string) => void;
+//     onEditQuiz: (id: string) => void;
+// }
+
+// export const ChaptersList = ({ items, onReorder, onEditChapter, onEditQuiz }: ChaptersListProps) => {
+//     const onDragEnd = (result: DropResult) => {
+//         if (!result.destination) return;
+
+//         const reorderedItems = Array.from(items);
+//         const [movedItem] = reorderedItems.splice(result.source.index, 1);
+//         reorderedItems.splice(result.destination.index, 0, movedItem);
+
+//         onReorder(
+//             reorderedItems.map((item, index) => ({ id: item.id, position: index }))
+//         );
+//     };
+
+//     return (
+//         <DragDropContext onDragEnd={onDragEnd}>
+//             <Droppable droppableId="content">
+//                 {(provided) => (
+//                     <div {...provided.droppableProps} ref={provided.innerRef}>
+//                         {items.map((item, index) => (
+//                             <Draggable key={item.id} draggableId={item.id} index={index}>
+//                                 {(provided) => (
+//                                     <div ref={provided.innerRef} {...provided.draggableProps} className="flex items-center gap-2">
+//                                         <Grip {...provided.dragHandleProps} />
+//                                         <span>{item.title}</span>
+//                                         <Pencil onClick={() => item.constructor.name === "chapter" ? onEditChapter(item.id) : onEditQuiz(item.id)} />
+//                                     </div>
+//                                 )}
+//                             </Draggable>
+//                         ))}
+//                         {provided.placeholder}
+//                     </div>
+//                 )}
+//             </Droppable>
+//         </DragDropContext>
+//     );
+// };

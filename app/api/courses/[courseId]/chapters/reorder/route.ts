@@ -15,11 +15,13 @@ export async function PUT(
             return new NextResponse("Unauthorized", { status: 401});
         }
 
+        const resolvedParams = await params;
+
         const { list } = await req.json();
 
         const ownCourse = await db.course.findUnique({
             where: {
-                id: params.courseId,
+                id: resolvedParams.courseId,
                 userId: userId
             }
         })

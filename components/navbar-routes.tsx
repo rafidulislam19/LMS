@@ -7,6 +7,7 @@ import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
 import { isTeacher } from "@/lib/teacher";
+import { Logo } from "@/app/(dashboard)/_components/logo";
 
 export const NavbarRoutes = () => {
     const { userId } = useAuth();
@@ -25,7 +26,7 @@ export const NavbarRoutes = () => {
         )}
         <div className="flex gap-x-2 ml-auto">
             {isTeacherPage || isCoursePage ? (
-                <Link href="/">
+                <Link href="/home">
                 <Button size="sm" variant="ghost">
                     <LogOut className="h-4 w-4 mr-2 font-semibold"/>
                     Exit
@@ -37,9 +38,28 @@ export const NavbarRoutes = () => {
                     Teacher Mode
                  </Button>
                 </Link>
-            ): null }
+            ): !userId ? (
+                <div>
+                <Link href="/sign-up">
+                 <Button size="sm" variant="ghost" className="text-white bg-slate-500 mr-3">
+                    Sign up
+                 </Button>
+                </Link>
+                <Link href="/sign-in">
+                 <Button size="sm" variant="ghost" className="text-white bg-slate-500 mr-3">
+                    Login
+                 </Button>
+                </Link>
+                </div>
+            ): (
+                <Link href="/search">
+                 <Button size="sm" variant="ghost" className="text-white bg-slate-500 mr-3">
+                    My Courses
+                 </Button>
+                </Link>
+            ) }
             <UserButton
-            afterSignOutUrl="/sign-in" />
+            afterSignOutUrl="/" />
         </div>
         </>
      );

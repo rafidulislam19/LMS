@@ -8,7 +8,7 @@ const AnalyticsPage = async () => {
     const { userId } = await auth();
 
     if(!userId) {
-        return redirect("/");
+        return redirect("/home");
     }
 
     const {

@@ -10,7 +10,7 @@ const TeacherLayout = async ({
     const { userId } = await auth();
 
     if(!isTeacher(userId)) {
-        return redirect("/");
+        return redirect("/home");
     }
 
     return <>{children}</>;
