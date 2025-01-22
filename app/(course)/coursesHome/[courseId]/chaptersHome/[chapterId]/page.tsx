@@ -1,25 +1,25 @@
 import { getChapter } from "@/actions/get-chapter";
 import { Banner } from "@/components/banner";
-import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { VideoPlayer } from "./_components/video-player";
+import { VideoPlayerHome } from "./_components/video-player-home";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
 import { File } from "lucide-react";
-import { CourseProgressButton } from "./_components/course-progress-button";
 
-const ChapterIdPage = async ({
+import { getChapterHome } from "@/actions/get-chapter-home";
+
+const ChapterHomeIdPage = async ({
     params
 } : {
     params: { courseId: string; chapterId: string }
 }) => {
 
-    const { userId } = await auth();
+    // const { userId } = await auth();
 
-    if (!userId) {
-        return redirect("/home");
-    }
+    // if (!userId) {
+    //     return redirect("/home");
+    // }
 
     const resolvedParams = await params;
 
@@ -29,29 +29,23 @@ const ChapterIdPage = async ({
         muxData,
         attachments,
         nextChapter,
-        userProgress,
-        purchase,
-    } = await getChapter({
-        userId,
+        // userProgress,
+        // purchase,
+    } = await getChapterHome({
+        // userId,
         chapterId: resolvedParams.chapterId,
         courseId: resolvedParams.courseId,
     });
 
     if (!chapter || !course) {
-        return redirect("/home");
+        return redirect("/");
     }
 
-    const isLocked = !chapter.isFree && !purchase;
-    const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+    const isLocked = !chapter.isFree;
+    // const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
     return ( 
         <div>
-            {userProgress?.isCompleted && (
-                <Banner
-                    variant="success"
-                    label="You already completed this chapter."
-                />
-            )}
             {isLocked && (
                 <Banner
                     variant="warning"
@@ -61,14 +55,13 @@ const ChapterIdPage = async ({
 
             <div className="flex flex-col max-w-4xl mx-auto pb-20">
                 <div className="p-4">
-                    <VideoPlayer
+                    <VideoPlayerHome
                         chapterId={resolvedParams.chapterId}
                         title={chapter.title}
                         courseId={resolvedParams.courseId}
                         nextChapterId={nextChapter?.id!}
                         playbackId={muxData?.playbackId!}
-                        isLocked={isLocked}
-                        completeOnEnd={completeOnEnd}
+                        isLocked={isLocked}                        
                     />
                 </div>
                 <div>
@@ -76,22 +69,11 @@ const ChapterIdPage = async ({
                         <h2 className="text-2xl font-semibold mb-2">
                             {chapter.title}
                         </h2>
-                        {purchase ? (
-                            <div>
-                                <CourseProgressButton
-                                    chapterId={resolvedParams.chapterId}
-                                    courseId={resolvedParams.courseId}
-                                    nextChapterId={nextChapter?.id}
-                                    isCompleted={!!userProgress?.isCompleted}
-                                />
-                            </div>
-                            
-                        ): (
-                            <CourseEnrollButton
-                             courseId={resolvedParams.courseId}
-                             price={course.price!}
-                            />
-                        )}
+                        <CourseEnrollButton
+                            courseId={resolvedParams.courseId}
+                            price={course.price!}
+                        />
+
                     </div>
                     <Separator />
                     <div>
@@ -122,4 +104,4 @@ const ChapterIdPage = async ({
      );
 }
  
-export default ChapterIdPage;
+export default ChapterHomeIdPage;
