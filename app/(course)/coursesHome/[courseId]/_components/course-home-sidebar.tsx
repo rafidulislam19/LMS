@@ -1,36 +1,14 @@
-import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs/server";
-import { Chapter, Course, UserProgress } from "@prisma/client";
-import { redirect } from "next/navigation";
-import { CourseSidebarItem } from "./course-sidebar-item";
-import { CourseProgress } from "@/components/course-progress";
+import { Chapter, Course } from "@prisma/client";
 import { CourseHomeSidebarItem } from "./course-home-sidebar-item";
 
 interface CourseHomeSidebarProps {
     course: Course & {
         chapters: Chapter[]
     };
-    // progressCount: number;
 }
 export const CourseHomeSidebar = async ({
     course,
-    // progressCount,
 }: CourseHomeSidebarProps) => {
-
-    // const { userId } = await auth();
-
-    // if(!userId) {
-    //     return redirect("/home");
-    // }
-
-    // const purchase = await db.purchase.findUnique({
-    //     where: {
-    //         userId_courseId: {
-    //             userId,
-    //             courseId: course.id,
-    //         }
-    //     }
-    // });
 
     return ( 
         <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
@@ -46,7 +24,6 @@ export const CourseHomeSidebar = async ({
                         key={chapter.id}
                         id={chapter.id}
                         label={chapter.title}
-                        // isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
                         courseId={course.id}
                         isLocked={!chapter.isFree}
                     />

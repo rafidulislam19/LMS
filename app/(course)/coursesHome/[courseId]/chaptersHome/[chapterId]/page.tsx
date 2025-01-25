@@ -1,4 +1,3 @@
-import { getChapter } from "@/actions/get-chapter";
 import { Banner } from "@/components/banner";
 import { redirect } from "next/navigation";
 import { VideoPlayerHome } from "./_components/video-player-home";
@@ -15,12 +14,6 @@ const ChapterHomeIdPage = async ({
     params: { courseId: string; chapterId: string }
 }) => {
 
-    // const { userId } = await auth();
-
-    // if (!userId) {
-    //     return redirect("/home");
-    // }
-
     const resolvedParams = await params;
 
     const {
@@ -29,10 +22,7 @@ const ChapterHomeIdPage = async ({
         muxData,
         attachments,
         nextChapter,
-        // userProgress,
-        // purchase,
     } = await getChapterHome({
-        // userId,
         chapterId: resolvedParams.chapterId,
         courseId: resolvedParams.courseId,
     });
@@ -42,7 +32,6 @@ const ChapterHomeIdPage = async ({
     }
 
     const isLocked = !chapter.isFree;
-    // const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
     return ( 
         <div>

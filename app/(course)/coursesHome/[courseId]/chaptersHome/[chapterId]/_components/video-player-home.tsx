@@ -1,13 +1,9 @@
 "use client";
 
-import axios from "axios";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MuxPlayer from "@mux/mux-player-react";
-import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 interface VideoPlayerHomeProps {
     playbackId: string;
@@ -27,8 +23,6 @@ export const VideoPlayerHome = ({
     title,
 }: VideoPlayerHomeProps) => {
     const [isReady, setIsReady] = useState(false);
-    const router = useRouter();
-    const confetti = useConfettiStore();
 
 
     return ( 

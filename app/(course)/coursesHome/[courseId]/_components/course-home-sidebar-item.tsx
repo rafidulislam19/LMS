@@ -1,13 +1,12 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { CheckCircle, Lock, PlayCircle } from "lucide-react";
+import { Lock, PlayCircle } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 interface CourseHomeSidebarProps {
     label: string;
     id: string;
-    // isCompleted: boolean;
     courseId: string;
     isLocked: boolean;
 };
@@ -15,7 +14,6 @@ interface CourseHomeSidebarProps {
 export const CourseHomeSidebarItem = ({
     label,
     id,
-    // isCompleted,
     courseId,
     isLocked,
 }: CourseHomeSidebarProps) => {

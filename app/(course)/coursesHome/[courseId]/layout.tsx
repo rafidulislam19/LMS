@@ -1,6 +1,4 @@
-import { getProgress } from "@/actions/get-progress";
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { CourseHomeNavbar } from "./_components/course-home-navbar";
 import { CourseHomeSidebar } from "./_components/course-home-sidebar";
@@ -12,12 +10,6 @@ const CourseHomeLayout = async ({
     children: React.ReactNode;
     params: { courseId: string };
 }) => {
-
-    // const { userId } = await auth();
-
-    // if(!userId) {
-    //     return redirect("/");
-    // }
 
     const resolvedParams = await params;
 

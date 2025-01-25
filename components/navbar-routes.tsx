@@ -8,6 +8,7 @@ import Link from "next/link";
 import { SearchInput } from "./search-input";
 import { isTeacher } from "@/lib/teacher";
 import { Logo } from "@/app/(dashboard)/_components/logo";
+import DarkModeToggle from "./darkModeToggle";
 
 export const NavbarRoutes = () => {
     const { userId } = useAuth();
@@ -26,6 +27,9 @@ export const NavbarRoutes = () => {
             </div>
         )}
         <div className="flex gap-x-2 ml-auto">
+            <div className="mr-2 flex items-center">
+            <DarkModeToggle />
+            </div>
             {isCourseHomePage ? (
                 <Link href="/">
                 <Button size="sm" variant="ghost">
@@ -35,33 +39,33 @@ export const NavbarRoutes = () => {
                 </Link>
             ): isTeacherPage || isCoursePage ? (
                 <Link href="/home">
-                <Button size="sm" variant="ghost">
-                    <LogOut className="h-4 w-4 mr-2 font-semibold"/>
+                <Button size="lg" variant="ghost">
+                    <LogOut className="h-4 w-4 mr-1 font-semibold"/>
                     Exit
                 </Button>
                 </Link>
             ) : isTeacher(userId) ? (
                 <Link href="/teacher/courses">
-                 <Button size="sm" variant="ghost" className="font-semibold">
+                 <Button size="sm" className="text-white bg-sky-600 hover:bg-sky-700 mr-3 font-semibold">
                     Teacher Mode
                  </Button>
                 </Link>
             ): !userId ? (
                 <div>
-                <Link href="/sign-up">
-                 <Button size="sm" variant="ghost" className="text-white bg-slate-500 mr-3">
-                    Sign up
+                <Link href="/sign-in">
+                 <Button variant="outline" size="sm" className="text-sky-600 hover:text-sky-600 border border-sky-600 dark:bg-gray-900 hover:bg-sky-600/10 dark:hover:bg-sky-800/10 mr-3 font-semibold">
+                    Login
                  </Button>
                 </Link>
-                <Link href="/sign-in">
-                 <Button size="sm" variant="ghost" className="text-white bg-slate-500 mr-3">
-                    Login
+                <Link href="/sign-up">
+                 <Button size="sm" className="text-white bg-sky-600 hover:bg-sky-700 mr-3 font-semibold">
+                    Sign up
                  </Button>
                 </Link>
                 </div>
             ): (
                 <Link href="/search">
-                 <Button size="sm" variant="ghost" className="text-white bg-slate-500 mr-3">
+                 <Button variant="outline" size="sm" className="text-sky-600 hover:text-sky-600 border border-sky-600 hover:bg-sky-600/10 mr-3 font-semibold">
                     My Courses
                  </Button>
                 </Link>

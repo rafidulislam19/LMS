@@ -10,6 +10,8 @@ import { redirect } from "next/navigation";
 import { Logo } from "./(dashboard)/_components/logo";
 import { getAllCourses } from "@/actions/get-all-courses";
 import { CoursesListHome } from "@/components/courses-list-home";
+import Footer from "@/components/footer";
+import BannerCarousel from "@/components/banner-carousel";
 
 interface SearchPageProps {
     searchParams: {
@@ -44,44 +46,25 @@ export default async function Home({
             <div className="h-[75px] fixed inset-y-0 w-full z-50">    
                         <Navbar />
             </div>
-            <div className="relative bg-sky-600 py-24 px-4 text-center mt-24 mx-6">
-            <div className="max-w-3xl mx-auto p-6 space-y-4">
-                <h1 className="text-white text-4xl font-bold mb-4">
-                Find the Best Courses for You
-                </h1>
-                <p className="text-gray-200 dark:text-gray-400 mb-8">
-                Discover, Learn, and Upskill with our wide range of courses
-                </p>
-
-                <form className="flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden max-w-xl mx-auto mb-6">
-                {/* <Input
-                    type="text"
-                    // value={searchQuery}
-                    // onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Courses"
-                    className="flex-grow border-none focus-visible:ring-0 px-6 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                />
-                <Button type="submit" className="bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-r-full hover:bg-blue-700 dark:hover:bg-blue-800">Search</Button> */}
-                <div className="flex-grow">
-                <SearchInput />
-                </div>
-                </form>
-                <a href="#courses">
-                <Button className="bg-white dark:bg-gray-800 text-sky-600 rounded-full hover:bg-gray-200 mt-5">Explore Courses</Button>
-                </a>
-            </div>
-        </div>
+            <BannerCarousel />
         <div className="p-6 space-y-4">
+            <div className="my-8 text-left">
+                <h1 className="text-3xl md:text-4xl text-gray-700 dark:text-gray-300 font-serif font-semibold my-4">All the skills you need in one place</h1>
+                <p className="text-gray-500 dark:text-gray-400 text-sm md:text-xl">From critical skills to technical topics, LMS supports your professional development.</p>
+            </div>
             <div>
             <h1 className="text-3xl font-semibold text-center text-sky-600 py-5">Categories</h1>
             <Categories
                 items={categories}
             />
             </div>
-            <div>
-            <h1 className="text-3xl font-semibold text-center text-sky-600 py-5" id="courses">Our Courses</h1>
+            <div id="courses">
+            <h1 className="text-3xl font-semibold text-center text-sky-600 py-5" >Our Courses</h1>
             <CoursesListHome items={courses} />
             </div>
+        </div>
+        <div className="mt-10">
+          <Footer />
         </div>
         </div>
      );

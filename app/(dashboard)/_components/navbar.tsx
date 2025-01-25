@@ -8,7 +8,7 @@ export const Navbar = async () => {
 
     const {userId} = await auth();
     return ( 
-        <div className="p-4 border-b h-full flex items-center bg-white shadow-sm">
+        <div className="p-4 border-b h-full flex items-center bg-white dark:bg-gray-900 shadow-xl">
             <Link href={!userId ? "/" : "/home"} className={!userId ? "p-6 hidden md:block" : "hidden" }>
                 <Logo />
             </Link>

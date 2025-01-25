@@ -3,9 +3,6 @@ import Link from "next/link";
 import { IconBadge } from "@/components/icon-badge";
 import { BookOpen } from "lucide-react";
 import { formatPrice } from "@/lib/format";
-import { CourseProgress } from "@/components/course-progress";
-import { number } from "zod";
-import { auth } from "@clerk/nextjs/server";
 
 interface CourseCardHomeProps {
     id: string;
@@ -26,7 +23,7 @@ export const CourseCardHome = async ({
     
     return ( 
         <Link href={`/coursesHome/${id}`}>
-            <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
+            <div className="group hover:shadow-sm transition overflow-hidden border dark:border-2 rounded-lg p-3 h-full">
                 <div className="relative w-full aspect-video rounded-md overflow-hidden">
                     <Image
                         fill
@@ -43,28 +40,16 @@ export const CourseCardHome = async ({
                         {category}
                     </p>
                     <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
-                        <div className="flex items-center gap-x-1 text-slate-500">
+                        <div className="flex items-center gap-x-1 text-slate-500 dark:text-slate-400">
                             <IconBadge size="sm" icon={BookOpen} />
                             <span>
                                 {chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
                             </span>
                         </div>
                     </div>
-                    <p className="text-md md:text-sm font-medium text-slate-700">
+                    <p className="text-md md:text-sm font-medium text-slate-700 dark:text-slate-300">
                             {formatPrice(price)}
                     </p>
-                    
-                    {/* {(progress !== null)  ? (
-                        <CourseProgress
-                        variant={progress === 100 ? "success" : "default"}
-                            size="sm"
-                            value={progress}
-                        />
-                    ): (
-                        <p className="text-md md:text-sm font-medium text-slate-700">
-                            {formatPrice(price)}
-                        </p>
-                    )} */}
                 </div>
             </div>
         </Link>
