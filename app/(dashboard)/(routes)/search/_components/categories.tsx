@@ -29,9 +29,10 @@ const iconMap: Record<Category["name"], IconType> = {
     "Filming": FcFilmReel,
     "Web Development": FcFilmReel,
     "Language": FcFilmReel,
-    "Economics": FcFilmReel,
+    "Economics": FcSalesPerformance,
     "Microsoft": FcFilmReel,
     "Engineering": FcEngineering,
+    "App Development": FcMultipleDevices,
 };
 
 export const Categories = ({

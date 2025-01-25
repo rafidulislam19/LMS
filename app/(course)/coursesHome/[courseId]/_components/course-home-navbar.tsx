@@ -12,7 +12,7 @@ export const CourseHomeNavbar = ({
     course,
 }: CourseHomeNavbarProps) => {
     return ( 
-        <div className="p-4 border-b h-full flex items-center bg-white">
+        <div className="p-4 border-b h-full flex items-center bg-white dark:bg-gray-900">
             <CourseHomeMobileSidebar
                 course={course}
             />

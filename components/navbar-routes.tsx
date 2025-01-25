@@ -39,8 +39,8 @@ export const NavbarRoutes = () => {
                 </Link>
             ): isTeacherPage || isCoursePage ? (
                 <Link href="/home">
-                <Button size="lg" variant="ghost">
-                    <LogOut className="h-4 w-4 mr-1 font-semibold"/>
+                <Button size="sm" variant="ghost">
+                    <LogOut className="h-4 w-2 mr-1 font-semibold"/>
                     Exit
                 </Button>
                 </Link>

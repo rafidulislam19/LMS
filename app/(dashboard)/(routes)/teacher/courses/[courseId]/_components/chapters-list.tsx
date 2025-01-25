@@ -73,15 +73,15 @@ export const ChaptersList = ({
                             index={index}>
                                 {(provided) => (
                                     <div className={cn(
-                                        "flex items-center gap-x-2 bg-slate-200 border-slate-200 border text-slate-700 rounded-md mb-4 text-sm",
-                                        chapter.isPublished && "bg-sky-100 border-sky-200 text-sky-700"
+                                        "flex items-center gap-x-2 bg-slate-200 dark:bg-slate-300 border-slate-200 dark:border-slate-300 border text-slate-700 rounded-md mb-4 text-sm",
+                                        chapter.isPublished && "bg-sky-100 dark:bg-sky-200 border-sky-200 dark:border-sky-300 text-sky-700"
                                     )}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     >
                                         <div className={cn(
-                                            "px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 rounded-l-md transition",
-                                            chapter.isPublished && "border-r-sky-200 hover: bg-sky-200"
+                                            "px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 dark:hover:bg-slate-200 rounded-l-md transition",
+                                            chapter.isPublished && "border-r-sky-200 dark:border-r-sky-300 hover:bg-sky-200 dark:hover:bg-sky-300"
                                         )}
                                         {...provided.dragHandleProps}
                                         >
@@ -98,7 +98,7 @@ export const ChaptersList = ({
                                             )}
                                             <Badge
                                             className={cn(
-                                                "bg-slate-500", chapter.isPublished && "bg-sky-700"
+                                                "bg-slate-500 dark:bg-slate-400", chapter.isPublished && "bg-sky-700 dark:bg-sky-500"
                                             )}>
                                                 {chapter.isPublished ? "Published" : "Draft"}
                                             </Badge>

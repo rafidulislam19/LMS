@@ -66,7 +66,7 @@ export const ChapterDescriptionForm = ({
     }
 
     return ( 
-        <div className="mt-6 border bg-slate-100 rounded-md p-4">
+        <div className="mt-6 border bg-slate-100 dark:bg-slate-800 rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
                 Chapter Description
                 <Button onClick={toggleEdit} variant="ghost">
@@ -97,7 +97,7 @@ export const ChapterDescriptionForm = ({
             {isEditing && (
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-4 mt-4">
+                    className="space-y-4 mt-4 text-black">
                         <FormField 
                         control={form.control}
                         name="description"

@@ -16,6 +16,7 @@ async function main() {
                 { name:"Language"},
                 { name:"Economics"},
                 { name:"Microsoft"},
+                { name:"App Development"},
             ]
         });
         console.log("Success");
